@@ -12,7 +12,7 @@ class SentimentScore(object):
 
     def get_sentiment_text(self):
         if 0.0 <= self.score <= 0.2:
-            return "기분이 나시군요."
+            return "기분이 나쁘시군요."
         elif 0.2 <= self.score <= 0.4:
             return "기분이 별로시네요."
         elif 0.4 <= self.score <= 0.6:
@@ -58,13 +58,10 @@ class Sentiment(object):
             }
 
             result = requests.post(self.url, headers=headers, json=payload)
-            print result
             if result.status_code == 200:
                 json_result = AttrDict(result.json())
-                print json_result
                 doc = json_result.documents[0]
                 return SentimentScore(score=doc.score)
-
             else:
                 raise HTTPError
         except Exception as e:

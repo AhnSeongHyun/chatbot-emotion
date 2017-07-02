@@ -5,6 +5,10 @@ from attrdict import AttrDict
 from requests import HTTPError
 from urlparse import urljoin
 
+class LanguageDetectionResult(object):
+    def __init__(self, name, lang_code):
+        self.name = name
+        self.lang_code = lang_code
 
 class LanguageDetection(object):
 
@@ -24,7 +28,6 @@ class LanguageDetection(object):
                 raise Exception('id and text is required')
 
             headers = {
-                # Request headers
                 'Content-Type': 'application/json',
                 'Ocp-Apim-Subscription-Key': self.api_key,
             }
@@ -35,14 +38,12 @@ class LanguageDetection(object):
                       'text': text}
                  ]
              }
-            print self.url
 
             result = requests.post(self.url, headers=headers, json=payload)
             if result.status_code == 200:
                 json_result = AttrDict(result.json())
                 detected_languages = json_result.documents[0].detectedLanguages[0]
-                return detected_languages.name, detected_languages.iso6391Name
-
+                return LanguageDetectionResult(detected_languages.name, detected_languages.iso6391Name)
             else:
                 raise HTTPError
         except Exception as e:
