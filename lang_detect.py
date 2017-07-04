@@ -5,10 +5,12 @@ from attrdict import AttrDict
 from requests import HTTPError
 from urlparse import urljoin
 
+
 class LanguageDetectionResult(object):
     def __init__(self, name, lang_code):
         self.name = name
         self.lang_code = lang_code
+
 
 class LanguageDetection(object):
 

@@ -34,7 +34,7 @@ def get_text():
                 message.append({'text': sentiment_score.get_sentiment_text()})
             else:
                 message.append({'text': '해당언어로는 제가 기분을 알 수 없습니다.'})
-                message.append({'text': '%s 언어로 이야기 해주세요.' % (conf.conf['approval_lang_code'].values())})
+                message.append({'text': '%s 언어로 이야기 해주세요.' % (conf['approval_lang_code'].values())})
         return jsonify(message.to_dict()), 200
     except Exception:
         import traceback
