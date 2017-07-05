@@ -7,3 +7,4 @@ gunicorn -w4 -b 0.0.0.0:8686 app:app
 
 ### tutoral
 - [chatfuel 이용 간단하게 챗봇 만들기](https://ash84.net/2017/07/03/using-chatfuel-make-chatbot/)
+- [Azure Text Analytics 연동하기](https://ash84.net/2017/07/05/azure-text-analytics-api/)
